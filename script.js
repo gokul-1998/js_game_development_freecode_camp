@@ -16,11 +16,36 @@ let gameFrame=0;
 const staggerFrames=5;
 // higher stagger frames, slower the animation will be
 
+const spriteAnimations=[];
+const animationStates=[
+    {
+        name:"idle",
+        frames:6
+    },
+    {
+        name:"jump",
+        frames:7
+    }
+];
+
+animationStates.forEach((state,index)=>{
+    let frames = {
+        loc:[],
+    };
+    for(let j=0;j<state.frames;j++){
+        let positionX=j*spriteWidth;
+        let positionY=index*spriteHeight;
+        frames.loc.push({x:positionX,y:positionY});
+    }
+    spriteAnimations[state.name]=frames;
+})
+
+console.log(spriteAnimations);
 
 // 5230 - is full sheet height, 
 function animate(){
     ctx.clearRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
-    let position=Math.floor(gameFrame/staggerFrames)%11;
+    let position=Math.floor(gameFrame/staggerFrames)%6;
 
     frameX = spriteWidth * position;
 

@@ -20,15 +20,12 @@ const staggerFrames=5;
 // 5230 - is full sheet height, 
 function animate(){
     ctx.clearRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
-    // ctx.fillRect(50,50,100,100);
-    // ctx.drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh)
-    // sx - source image x , sy - source y, sw - source width, sh - source height, dx - destination x, dy - destination y, dw - destination width, dh - destination height
-    
-    ctx.drawImage(playerImage,frameX*spriteWidth,frameY*spriteHeight,spriteWidth,spriteHeight,0,0,spriteWidth,spriteHeight);
-    if (gameFrame%staggerFrames==0){
-        if (frameX<6) frameX++;
-        else frameX=0;
-    }
+    let position=Math.floor(gameFrame/staggerFrames)%6;
+
+    frameX = spriteWidth * position;
+
+    ctx.drawImage(playerImage,frameX,frameY,spriteWidth,spriteHeight,0,0,spriteWidth,spriteHeight);
+   
     gameFrame++;
     requestAnimationFrame(animate);
 }

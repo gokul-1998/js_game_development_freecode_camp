@@ -10,6 +10,8 @@ const playerImage= new Image();
 playerImage.src='shadow_dog.png';
 const spriteWidth=575;
 const spriteHeight=523;
+let frameX=0;
+let frameY=0;
 
 // 5230 - is full sheet height, 
 function animate(){
@@ -18,7 +20,7 @@ function animate(){
     // ctx.drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh)
     // sx - source image x , sy - source y, sw - source width, sh - source height, dx - destination x, dy - destination y, dw - destination width, dh - destination height
     
-    ctx.drawImage(playerImage,0,0,spriteWidth,spriteHeight,0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
+    ctx.drawImage(playerImage,frameX*spriteWidth,frameY*spriteHeight,spriteWidth,spriteHeight,0,0,spriteWidth,spriteHeight);
     requestAnimationFrame(animate);
 }
 

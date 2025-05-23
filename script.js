@@ -12,6 +12,10 @@ const spriteWidth=575;
 const spriteHeight=523;
 let frameX=0;
 let frameY=0;
+let gameFrame=0;
+const staggerFrames=5;
+// higher stagger frames, slower the animation will be
+
 
 // 5230 - is full sheet height, 
 function animate(){
@@ -21,6 +25,11 @@ function animate(){
     // sx - source image x , sy - source y, sw - source width, sh - source height, dx - destination x, dy - destination y, dw - destination width, dh - destination height
     
     ctx.drawImage(playerImage,frameX*spriteWidth,frameY*spriteHeight,spriteWidth,spriteHeight,0,0,spriteWidth,spriteHeight);
+    if (gameFrame%staggerFrames==0){
+        if (frameX<6) frameX++;
+        else frameX=0;
+    }
+    gameFrame++;
     requestAnimationFrame(animate);
 }
 
